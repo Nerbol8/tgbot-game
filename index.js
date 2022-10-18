@@ -60,10 +60,10 @@ const start = async ()=>{
         if (data == chats[chatId]) {
             await bot.sendMessage(chatId,`Поздравляю, ты отгадал цифру ${chats[chatId]}`,againOptions)
         }  else {
-            await bot.sendMessage(chatId, `К сожалению ты не угадал, бот загадал цифру ${chats[chatId]}`,againOptions)
+            await bot.sendMessage(chatId, `К сожалению ты не угадал`,againOptions)
         }
 
-        
+       // бот загадал цифру ${chats[chatId]}`
         
     })
 }
