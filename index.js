@@ -23,10 +23,12 @@ bot.setMyCommands( [
     {command: '/game',description:'Угадай цифру'}
 ])
 
-const start = ()=>{
+const start = async ()=>{
     bot.on ('message', async msg => {
         const text = msg.text;
         const chatId = msg.chat.id;
+
+        try {
     
         if (text === '/start') {
        await bot.sendSticker(chatId, `https://tlgrm.ru/_/stickers/d06/e20/d06e2057-5c13-324d-b94f-9b5a0e64f2da/192/14.webp`)
@@ -41,6 +43,9 @@ const start = ()=>{
           }
 
         return bot.sendMessage(chatId,'Я тебя не понимаю')
+        } catch (e) {
+            
+            return bot.sendMessage(chatId,'Произошла какая-то ошибка')}
     })
 
     bot.on('callback_query', async msg => {
@@ -52,7 +57,7 @@ const start = ()=>{
                return startGame(chatId)
         }
 
-        if (data === chats[chatId]) {
+        if (data == chats[chatId]) {
             await bot.sendMessage(chatId,`Поздравляю, ты отгадал цифру ${chats[chatId]}`,againOptions)
         }  else {
             await bot.sendMessage(chatId, `К сожалению ты не угадал, бот загадал цифру ${chats[chatId]}`,againOptions)
